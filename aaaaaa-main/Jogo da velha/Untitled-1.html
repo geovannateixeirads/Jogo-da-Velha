@@ -1,0 +1,148 @@
+<html>
+<head>
+    <title>Jogo da Velha</title>
+</head>
+<style>
+    input[type="button"]
+    {
+        width: 100px;
+        height: 100px;
+        font-size: 35px;
+        border-radius: 10px;
+    }
+    input[type="button"].reiniciar
+    {
+        width: 310px;
+        height: 100px;
+        font-size: 20px;
+    }
+    body
+    {
+        margin-top: 100px;
+        background-color: cadetblue;
+    }
+</style>
+<script language="javascript">
+    var vez = "x", vezes=0, botoes=[1, 2, 3, 4, 5, 6, 7, 8, 9], a=0;
+    function chuu(IdBotao) {
+
+        document.getElementById(IdBotao).innerHTML = '<img src="' + vez + '.png" width="100px">';
+        if (vez == "x")
+        {
+            vez = "o";
+        }
+        else
+        {
+            vez = "x";
+        }
+        
+        botoes[IdBotao] = document.getElementById(IdBotao).innerHTML
+        vezes++
+
+        //Linhas
+        if (botoes[1] == botoes[2] && botoes[2] == botoes[3])
+        {
+            a = botoes[1];
+        }
+
+        if (botoes[4] == botoes[5] && botoes[5] == botoes[6])
+        {
+            a = botoes[4];
+        }
+
+        if (botoes[7] == botoes[8] && botoes[8] == botoes[9])
+        {
+            a = botoes[7];
+        }
+
+        //Colunas
+        if (botoes[1] == botoes[4] && botoes[4] == botoes[7])
+        {
+            a = botoes[1];
+        }
+
+        if (botoes[2] == botoes[5] && botoes[5] == botoes[8])
+        {
+            a = botoes[2];
+        }
+
+        if (botoes[3] == botoes[6] && botoes[6] == botoes[9])
+        {
+            a = botoes[3];
+        }
+
+        //Diagonais
+        if (botoes[1] == botoes[5] && botoes[5] == botoes[9])
+        {
+            a = botoes[1];
+        }
+
+        if (botoes[3] == botoes[5] && botoes[5] == botoes[7])
+        {
+            a = botoes[3];
+        }
+
+        //Ngm ganhou
+
+        if (vezes == 9)
+        {
+            a = "Ninguém";
+        }
+        
+        if (a != 0)
+        {
+            venceu()
+        }
+        
+    }
+    function venceu()
+    {
+        if (a == '<img src="x.png" width="100px">')
+        {
+            a = "X"
+        }
+        else if (a == '<img src="o.png" width="100px">')
+        {
+            a = "O"
+        }
+        else
+        {
+            a = "Ninguém"
+        }
+        window.alert(a + " Ganhou!");
+        window.location.reload()
+    }
+    
+</script>
+<body>
+    <center>
+    <table>
+        <tr>
+            <td id="1"><input type="button" name="btn1" onclick="chuu(1)"></td>
+            <td id="2"><input type="button" name="btn2" onclick="chuu(2)"></td>
+            <td id="3"><input type="button" name="btn3" onclick="chuu(3)"></td>
+        </tr>
+
+        <tr>
+            <td id="4"><input type="button" name="btn4" onclick="chuu(4)"></td>
+            <td id="5"><input type="button" name="btn5" onclick="chuu(5)"></td>
+            <td id="6"><input type="button" name="btn6" onclick="chuu(6)"></td>
+        </tr>
+
+        <tr>
+            <td id="7"><input type="button" name="btn7" onclick="chuu(7)"></td>
+            <td id="8"><input type="button" name="btn8" onclick="chuu(8)"></td>
+            <td id="9"><input type="button" name="btn9" onclick="chuu(9)"></td>
+        </tr>
+
+        <tr>
+            <td colspan="3"><input type="button" name="reiniciar" value="Reiniciar" class="reiniciar" onclick="window.location.reload()"></td>
+        </tr>
+
+        <tr>
+            <td id="10"></td>
+        </tr>
+    </table>
+</center>
+</body>
+<html>
